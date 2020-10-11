@@ -125,14 +125,14 @@ const player1 = player('p1', 'x');
 const player2 = player('p2', 'o');
 
 //rename players for PVP
-function createPlayers(){
+function createPlayers() {
   const p1 = document.getElementById('p1_name').value;
   const p2 = document.getElementById('p2_name').value;
-player1.setName(p1);
-player2.setName(p2);
-document.getElementById('overlay').style.display = "none";
-document.getElementById('p1name').innerText = player1.getName();
-document.getElementById('p2name').innerText = player2.getName();
+  player1.setName(p1);
+  player2.setName(p2);
+  game.resetGameScore();
+  document.getElementById('p1name').innerText = player1.getName();
+  document.getElementById('p2name').innerText = player2.getName();
 }
 
 
@@ -150,9 +150,18 @@ const game = (() => {
     playerTurn = player;
     console.log(`It's ${playerTurn.getName()}'s turn`);
   }
+
   const updateScore = () => {
     score1.innerText = player1.getScore();
     score2.innerText = player2.getScore();
+  }
+  const resetGameScore = () => {
+    document.getElementById('burger').classList.toggle('is-active');
+    player1.resetScore();
+    player2.resetScore();
+    toggleOverlay();
+    updateScore();
+    newRound();
   }
   const stopGame = () => gameStop = true;
   const continueGame = () => gameStop = false;
@@ -184,6 +193,7 @@ const game = (() => {
     getTurn,
     setTurn,
     updateScore,
+    resetGameScore,
     setWinner,
     announceWinner,
     announceDraw,
@@ -199,5 +209,9 @@ const game = (() => {
 
 //events
 function showNameInputs() {
-document.querySelector('#namesForm').classList.toggle('active');
+  document.querySelector('#namesForm').classList.toggle('active');
+}
+
+function toggleOverlay() {
+  document.getElementById('overlay').classList.toggle('hidden');
 }
