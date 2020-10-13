@@ -38,6 +38,7 @@ const gameboard = (() => {
       } else if (gameBoard[i] === player2.getWeapon()) {
         o_OnBoard.push(i);
       }
+      console.log(x_OnBoard, o_OnBoard)
     }
 
     const checker = (arr, winCon) => {
@@ -52,17 +53,16 @@ const gameboard = (() => {
           game.updateScore();
           x_OnBoard = [];
           o_OnBoard = [];
+          return;
         } else if (!(winCon[i].every(item => arr.includes(item))) & !gameBoard.includes(0)) {
           game.announceDraw();
           game.announceWinner();
-          x_OnBoard = [];
-          o_OnBoard = [];
-          return;
         }
       }
     }
-    checker(x_OnBoard, winConditions);
     checker(o_OnBoard, winConditions);
+    checker(x_OnBoard, winConditions);
+
 
   }
 
@@ -70,7 +70,6 @@ const gameboard = (() => {
     if (gameBoard[target] === 0 & !game.isGameStopped()) {
       gameBoard[target] = game.getTurn().getWeapon();
       boardNodes[target].classList.add(game.getTurn().getWeapon());
-      console.log(gameBoard);
       checkForWinner();
       if (game.getTurn() === player1) {
         game.setTurn(player2);
@@ -128,8 +127,13 @@ const player2 = player('p2', 'o');
 function createPlayers() {
   const p1 = document.getElementById('p1_name').value;
   const p2 = document.getElementById('p2_name').value;
-  player1.setName(p1);
-  player2.setName(p2);
+  if (p1 === '' & p2 === '') {
+    player1.setName('Player 1');
+    player2.setName('Player 2');
+  } else {
+    player1.setName(p1);
+    player2.setName(p2);
+  }
   game.resetGameScore();
   document.getElementById('p1name').innerText = player1.getName();
   document.getElementById('p2name').innerText = player2.getName();

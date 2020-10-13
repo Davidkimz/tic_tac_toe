@@ -63,9 +63,11 @@ h1 {
   height: 150px;
   width: 40vw;
   font-size: 1.5em;
+  transition: 0s !important;
 }
 
 #startPvP:hover {
+  transform: scale(1.2);
   background: #6ae6e9;
   color: #e751a0;
 }
@@ -106,13 +108,20 @@ h1 {
 }
 
 input {
+  background-color: #e751a0;
+  color: #6ae6e9;
   outline: none;
   border-radius: 50px;
+  border: none;
+  border-bottom: 2px solid #6ae6e9;
   margin: auto;
   margin-bottom: 30px;
   line-height: 1em;
   font-size: 1em;
   height: 100px;
+  vertical-align: bottom !important;
+  line-height: 100px;
+  text-align: center;
 }
 
 .container {
@@ -164,6 +173,28 @@ input {
 
 .o {
   background-image: url("circle.png");
+}
+
+.x, .o {
+  animation-name: shrink;
+  animation-duration: .7s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes shrink {
+  0% {
+    border-color: transparent;
+    transform: scale(1.7);
+  }
+
+  99% {
+    border-color: transparent;
+    transform: scale(1);
+  }
+
+  100% {
+    border-color: #000;
+  }
 }
 
 #top_left {
