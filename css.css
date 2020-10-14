@@ -233,6 +233,26 @@ input {
   border-right: none;
 }
 
+#resetContainer {
+  position: relative;
+}
+
+#resetBoardButton {
+  outline: none;
+  font-size: 0.5em;
+  text-transform: uppercase;
+  height: 75px;
+  width: 200px;
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+#resetBoardButton.clickedReset {
+  transform: scale(1.2);
+  background: rgb(106, 230, 233);
+  background: linear-gradient(90deg, rgba(106, 230, 233, 1) 0%, rgba(255, 255, 255, 1) 40%, rgba(254, 249, 252, 1) 60%, rgba(231, 81, 160, 1) 100%);
+}
+
 #announcer {
   display: none;
   position: relative;
@@ -279,6 +299,17 @@ input {
   }
 }
 
+@media only screen and (min-width: 1000px) {
+  .clear {
+    bottom: 5vh;
+  }
+
+  .container {
+    display: inline-block;
+    margin-top: 10%;
+  }
+}
+
 @media only screen and (min-width: 1400px) {
   body {
     overflow: hidden;
@@ -299,7 +330,7 @@ input {
   }
 
   #announcer {
-    bottom: 25vh;
+    bottom: 30vh;
   }
 
   #player2 {
@@ -323,5 +354,9 @@ input {
 
   #namesForm {
     margin-top: -40px !important;
+  }
+
+  #resetContainer {
+    bottom: 15vh;
   }
 }

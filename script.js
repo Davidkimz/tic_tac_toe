@@ -175,6 +175,7 @@ const game = (() => {
   };
   const announceWinner = () => {
     announcer.style.display = "block";
+    document.getElementById('resetBoardButton').style.visibility = 'hidden';
   }
   const clearWinner = () => {
     winner.innerText = ""
@@ -192,6 +193,7 @@ const game = (() => {
     continueGame();
     clearWinner();
     clearAnnouncer();
+    document.getElementById('resetBoardButton').style.visibility = 'visible';
   }
   return {
     getTurn,
@@ -219,3 +221,17 @@ function showNameInputs() {
 function toggleOverlay() {
   document.getElementById('overlay').classList.toggle('hidden');
 }
+
+
+document.getElementById('resetBoardButton').addEventListener('mousedown', (e) => {
+  e.target.classList.add('clickedReset');
+})
+
+document.addEventListener('mouseup', (e) => {
+    if (e.target === document.getElementById('resetBoardButton')) {
+      gameboard.resetBoard();
+      e.target.classList.remove('clickedReset');
+    } else {
+      document.getElementById('resetBoardButton').classList.remove('clickedReset');
+  }
+})
